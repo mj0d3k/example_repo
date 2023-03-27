@@ -18,3 +18,10 @@ r=5
 obwod=2*π*r
 pole=π*(r*r)
 print("Obwód koła wynosi " + str(obwod) + ", a pole " + str(pole) + ".")
+
+#romb
+a=6
+h=5
+obwod=4*a
+pole=a*h
+print("Obwód rombu wynosi " + str(obwod) + ", a pole " + str(pole) + ".")
