@@ -32,12 +32,18 @@ def trapez(bok_a, bok_b, bok_c, bok_d, wysokosc_a):
     pole=(bok_a+bok_b)*wysokosc_a/2
     return obwod, pole
 
-
+# Import math Library
+import math
+print(math.pi)
 def kolo(promien):
-    obwod = promien*2*π
-    pole = π*promien**2
+    obwod = promien*2*math.pi
+    pole = math.pi*promien**2
     return obwod, pole
+print(kolo(5))
+assert kolo(5) == (31.41592653589793, 78.53981633974483)
 
+print(kolo(10))
+assert kolo(10) == (62.83185307179586, 314.1592653589793)
 
 # assert trojkat(10, 15, 16, 8) == (41, 40)
 # assert trojkat(15, 8, 12, 6) == (29, 45)
