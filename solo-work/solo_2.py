@@ -1,4 +1,7 @@
-# klasy
+"""
+przykład
+"""
+
 class Trojkat:
     def __init__(self, a, b, c, h_a):
         self.bok_a = a  # te a nie muszą być takie same, mogłoby być self.bok_a = a
@@ -52,6 +55,9 @@ class Student:
     def zwroc_srednia(self):
         return sum(self.oceny) / len(self.oceny)
 
+"""
+moje zadanie
+"""
 
 class Ladowarka(): #do samochodu elektrycznego
     def __init__(self, miasto, ulica, moc, liczba_zlacz, wartosc, producent, operator, model):
@@ -68,15 +74,15 @@ class Ladowarka(): #do samochodu elektrycznego
 
     def cena_ladowania(self): #ile będzie kosztowała godzina ładowania
         if self.c > 100:
-            return 60 * 1.87
+            return str(60 * 1.87) + ' PLN'
         else:
-            return 60 * 1.18
+            return str(60 * 1.18) + ' PLN'
 
     def ubezpieczenie(self): #jaką kwotą operator zobowiązany jest pokryć ubezpieczenie ładowarki
         if self.e >= 100000:
-            return 0.10 * self.e
+            return str(0.10 * self.e) + ' PLN'
         else:
-            return 0.05 * self.e
+            return str(0.05 * self.e) + ' PLN'
 
     def ile_samochodow(self): #ile samochodów może jednocześnie ładować się na jednej stacji
         if self.c > 50 and self.c <= 100:
