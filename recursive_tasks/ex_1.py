@@ -1,8 +1,7 @@
 """
 SUMA Z LISTY
 pseudokod:
-jezeli lista jest pusta
-to 0
+jezeli lista jest pusta to 0
 jesli nie jest pusta (else)
 do pierwszego elemenu dodaj sumę kolejnych elementow listy
 """
@@ -25,13 +24,15 @@ print(zad1([1, 2, 3]))
 """
 MAX Z LISTY
 pseudokod:
-jeżeli lista jest pusta zwróć None
-jeżeli lista zawiera tylko jeden element zwróć ten element
+jeżeli lista jest pusta 
+zwróć None
+jeżeli lista zawiera tylko jeden element 
+zwróć ten element
 else
-pierwszy_element to pierwszy index listy [0]
-reszta_listy będzie oznaczona jako = lista[1:]
+pierwszy_element to pierwszy indeks listy [0]
+reszta listy będzie oznaczona jako = lista[1:] (od drugiego elementu do końca)
 max reszty znaleźć przez funkcję z reszty_listy
-jeżeli pierwszy_element > max_reszty -> zwróć pierwszy_element
+jeżeli indeks 0 > max_reszty -> zwróć pierwszy_element
 else -> zwróć max_reszty
 """
 
@@ -102,10 +103,3 @@ print(10 * '-')
 print(zad4(-10))
 print(zad4(0))
 print(zad4(10))
-
-
-"""
-SUDOKU
-pseudokod:
-
-"""
