@@ -1,53 +1,51 @@
-# brutto 3600
-# netto 3000
-# 600 zl po stornie pracownika
-# 600 po stronie pracodawcy
-# rozbic na wszytskie skladki po stronie pracodawcy i pracownika
-
 import csv
 
-with open('salary.csv') as my_file:
-    my_reader = csv.reader(my_file)
-
 class Pracownik:
-    def __init__(self):
-        self.imie= ""
-        self.nazwisko = ""
-        self.wynagrodzenie_brutto = ""
+    def __init__(self, imie, nazwisko, wynagrodzenie_brutto):
+        self.imie = imie
+        self.nazwisko = nazwisko
+        self.wynagrodzenie_brutto = float(wynagrodzenie_brutto)
 
     def __str__(self):
-        pass
+        return f"{self.imie} {self.nazwisko}:"
 
-    @classmethod
-    def placa_netto(cls, file):
-        pracownicy = []
-        with open(file) as pracownicy_file:
-            for row in csv.reader(pracownicy_file):
-                pracownicy.append(
-                    cls(row[0], row[1], row[2])
-                )
-        return pracownicy
+    @property
+    def placa_netto(self):
+        skladka_emerytalna = self.wynagrodzenie_brutto * 0.0976
+        skladka_rentowa = self.wynagrodzenie_brutto * 0.015
+        skladka_chorobowa = self.wynagrodzenie_brutto * 0.0245
+        skladka_zdrowotna = self.wynagrodzenie_brutto * 0.09
+        skladki = skladka_emerytalna + skladka_rentowa + skladka_chorobowa + skladka_zdrowotna
+        return self.wynagrodzenie_brutto - skladki
 
-print(Pracownik.placa_netto('salary.csv'))
-
-    # def placa_netto(self):
-    #     for pracownik in pracownicy:
-    #         suma = self.wynagrodzenie_brutto # czy to jest potrzebne?
-    #         return suma - self.wynagrodzenie_brutto * 0.0976 - self.wynagrodzenie_brutto * 0.015 - self.wynagrodzenie_brutto * 0.09 - self.wynagrodzenie_brutto * 0.0245
-
-    # def oblicz_koszty_pracodawcy(self):
-    #     for pracownik in pracownicy:
-    #         suma = self.wynagrodzenie_brutto
-    #         return suma + self.wynagrodzenie_brutto * 0.0976 + self.wynagrodzenie_brutto * 0.065 + self.wynagrodzenie_brutto * 0.0245 + self.wynagrodzenie_brutto * 0.067 + self.wynagrodzenie_brutto * 0.01
+    @property
+    def koszty_pracodawcy(self):
+        skladka_emerytalna = self.wynagrodzenie_brutto * 0.0976
+        skladka_rentowa = self.wynagrodzenie_brutto * 0.065
+        skladka_wypadkowa = self.wynagrodzenie_brutto * 0.0167
+        skladka_fgsp = self.wynagrodzenie_brutto * 0.0245
+        skladka_fundusz_pracy = self.wynagrodzenie_brutto * 0.010
+        skladki = skladka_emerytalna + skladka_rentowa + skladka_wypadkowa + skladka_fgsp + skladka_fundusz_pracy
+        return self.wynagrodzenie_brutto + skladki
 
 
+pracownicy = []
+with open('salary.csv', 'r') as file:
+    reader = csv.reader(file)
+    next(reader)
+    for row in reader:
+        pracownicy.append(Pracownik(row[0], row[1], row[2]))
 
-    # koszty_wszystkich_pracownikow = 0
-    # for pracownik in pracownicy:
-    #     print("Pracownik Kowalski: ")
-    #     print("- pensja brutto: ")
-    #     print("- pensja netto: ")
-    #     print("- koszty pracodawcy: ")
-    #     print("- koszt całkowity: ")
-    #
-    # print("Suma kosztów wynosi: ")
+pracownicy_koszty = 0
+for pracownik in pracownicy:
+    print(f"Pracownik - {pracownik.imie} {pracownik.nazwisko}:")
+    print(f"- pensja brutto: {pracownik.wynagrodzenie_brutto}")
+    print(f"- pensja netto: {pracownik.placa_netto}")
+    koszty_pracodawcy = pracownik.koszty_pracodawcy
+    print(f"- koszty pracodawcy: {koszty_pracodawcy}")
+    suma_kosztow = pracownik.wynagrodzenie_brutto + koszty_pracodawcy
+    print(f"- koszt całkowity: {suma_kosztow}")
+    pracownicy_koszty += suma_kosztow
+    print()
+
+print(f"Suma kosztów wynosi: {pracownicy_koszty}")
